@@ -43,7 +43,7 @@
 
 ---
 
-## T3 — Migrar `AuthGuard` a `CanActivateFn`
+## T3 — [x] Migrar `AuthGuard` a `CanActivateFn`
 
 **Depende de:** T2 (delega en `AuthService`).
 
