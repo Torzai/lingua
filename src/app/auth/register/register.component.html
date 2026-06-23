@@ -66,16 +66,16 @@
         </select>
       </div>
 
-      <div *ngIf="error" class="bg-terracotta-50 border border-terracotta-100 text-terracotta-600 p-3 rounded-xl text-sm font-semibold">
-        {{ error }}
+      <div *ngIf="error()" class="bg-terracotta-50 border border-terracotta-100 text-terracotta-600 p-3 rounded-xl text-sm font-semibold">
+        {{ error() }}
       </div>
 
       <button
         type="submit"
-        [disabled]="loading"
+        [disabled]="loading()"
         class="w-full bg-gradient-to-r from-terracotta-500 to-terracotta-600 text-white font-bold py-3 rounded-xl shadow-lg shadow-terracotta-500/30 hover:shadow-xl hover:shadow-terracotta-500/40 transition disabled:opacity-50 flex items-center justify-center gap-2"
       >
-        {{ loading ? 'Registrando...' : 'Registrarse' }}
+        {{ loading() ? 'Registrando...' : 'Registrarse' }}
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4">
           <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
         </svg>

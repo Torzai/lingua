@@ -46,7 +46,7 @@
             class="w-full px-4 py-2 bg-cream border border-forest-100 rounded-xl text-ink focus:border-forest-500 focus:ring-2 focus:ring-forest-500/20 focus:outline-none transition"
           >
             <option value="" class="bg-paper text-ink">Todas</option>
-            <option *ngFor="let cat of categorias" [value]="cat" class="bg-paper text-ink">{{ cat }}</option>
+            <option *ngFor="let cat of categorias()" [value]="cat" class="bg-paper text-ink">{{ cat }}</option>
           </select>
         </div>
 
@@ -59,21 +59,21 @@
             class="w-full px-4 py-2 bg-cream border border-forest-100 rounded-xl text-ink focus:border-forest-500 focus:ring-2 focus:ring-forest-500/20 focus:outline-none transition"
           >
             <option value="" class="bg-paper text-ink">Todos</option>
-            <option *ngFor="let nivel of niveles" [value]="nivel" class="bg-paper text-ink">{{ nivel }}</option>
+            <option *ngFor="let nivel of niveles()" [value]="nivel" class="bg-paper text-ink">{{ nivel }}</option>
           </select>
         </div>
       </div>
     </div>
 
     <!-- Loading -->
-    <div *ngIf="loading" class="text-center py-12">
+    <div *ngIf="loading()" class="text-center py-12">
       <p class="text-ink-light text-lg">Cargando palabras...</p>
     </div>
 
     <!-- Vocabulario Grid -->
-    <div *ngIf="!loading" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div *ngIf="!loading()" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       <div
-        *ngFor="let word of vocabulario"
+        *ngFor="let word of vocabulario()"
         class="bg-paper border border-forest-100 rounded-2xl shadow-sm p-6 hover:shadow-md hover:border-forest-400/40 transition cursor-pointer"
       >
         <div class="flex justify-between items-start mb-4">
@@ -109,7 +109,7 @@
     </div>
 
     <!-- No results -->
-    <div *ngIf="!loading && vocabulario.length === 0" class="text-center py-12">
+    <div *ngIf="!loading() && vocabulario().length === 0" class="text-center py-12">
       <p class="text-ink-light text-lg">No se encontraron palabras</p>
     </div>
   </main>
