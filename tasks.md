@@ -77,7 +77,7 @@
 
 ---
 
-## T5 — Borrar interceptor huérfano
+## T5 — [x] Borrar interceptor huérfano
 
 **Independiente** (puede ir en cualquier momento).
 
