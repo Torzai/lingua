@@ -2,13 +2,51 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream: '#FBF1E1',
+            paper: '#FFFCF5',
+            forest: {
+              50: '#EAF2EC',
+              100: '#DCEEDD',
+              400: '#4F7A5B',
+              500: '#2F5233',
+              600: '#264328',
+              700: '#1E351F',
+            },
+            terracotta: {
+              50: '#FDEFE6',
+              100: '#FBE2DD',
+              400: '#F0A868',
+              500: '#E2693B',
+              600: '#CB5429',
+            },
+            ink: {
+              DEFAULT: '#2E2A25',
+              light: '#8C8680',
+            },
+          },
+          fontFamily: {
+            serif: ['Fraunces', 'serif'],
+            sans: ['Inter', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
   <title>LinguaFrontend</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
-<body>
+<body class="font-sans">
   <app-root></app-root>
 </body>
 </html>

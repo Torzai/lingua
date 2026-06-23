@@ -38,7 +38,7 @@ export class VocabularyListComponent implements OnInit {
     this.apiService.getCategorias().subscribe({
       next: (data) => {
         this.categorias = data;
-      },
+      }
     });
   }
 

@@ -1,20 +1,20 @@
-<div class="min-h-screen bg-black text-white">
+<div class="min-h-screen bg-cream text-ink">
   <!-- Header -->
-  <header class="bg-zinc-900/80 backdrop-blur-xl border-b border-zinc-800 sticky top-0 z-10">
+  <header class="bg-paper/90 backdrop-blur-xl border-b border-forest-100 sticky top-0 z-10">
     <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
       <div class="flex items-center gap-3">
-        <div class="w-9 h-9 rounded-full bg-black border-2 border-zinc-700 flex items-center justify-center shadow-[0_0_15px_rgba(34,197,94,0.4)]">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="white" class="w-5 h-5">
+        <div class="w-9 h-9 rounded-full bg-forest-50 border-2 border-forest-100 flex items-center justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="#2F5233" class="w-5 h-5">
             <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
           </svg>
         </div>
-        <h1 class="text-2xl font-extrabold bg-gradient-to-r from-green-400 to-red-500 bg-clip-text text-transparent">
+        <h1 class="text-2xl font-serif font-bold text-forest-500">
           Vocabulario 📚
         </h1>
       </div>
       <button
         (click)="goBack()"
-        class="bg-zinc-800 border border-zinc-700 text-white px-6 py-2 rounded-xl hover:bg-zinc-700 transition font-semibold text-sm"
+        class="bg-paper border border-forest-100 text-ink px-6 py-2 rounded-xl hover:bg-forest-50 transition font-semibold text-sm"
       >
         Volver
       </button>
@@ -24,42 +24,42 @@
   <!-- Main Content -->
   <main class="max-w-7xl mx-auto px-6 py-12">
     <!-- Filters -->
-    <div class="bg-zinc-900 border border-zinc-800 rounded-2xl shadow-lg p-6 mb-8">
+    <div class="bg-paper border border-forest-100 rounded-2xl shadow-sm p-6 mb-8">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         <!-- Search -->
         <div>
-          <label class="block text-sm font-semibold text-zinc-400 mb-2">Buscar</label>
+          <label class="block text-sm font-semibold text-ink-light mb-2">Buscar</label>
           <input
             type="text"
             placeholder="Buscar palabra..."
             (input)="onSearch($event.target.value)"
-            class="w-full px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-xl text-white placeholder-zinc-500 focus:border-green-500 focus:ring-2 focus:ring-green-500/30 focus:outline-none transition"
+            class="w-full px-4 py-2 bg-cream border border-forest-100 rounded-xl text-ink placeholder-ink-light/60 focus:border-forest-500 focus:ring-2 focus:ring-forest-500/20 focus:outline-none transition"
           />
         </div>
 
         <!-- Categoría -->
         <div>
-          <label class="block text-sm font-semibold text-zinc-400 mb-2">Categoría</label>
+          <label class="block text-sm font-semibold text-ink-light mb-2">Categoría</label>
           <select
             [(ngModel)]="selectedCategoria"
             (change)="onFilterChange()"
-            class="w-full px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-xl text-white focus:border-green-500 focus:ring-2 focus:ring-green-500/30 focus:outline-none transition"
+            class="w-full px-4 py-2 bg-cream border border-forest-100 rounded-xl text-ink focus:border-forest-500 focus:ring-2 focus:ring-forest-500/20 focus:outline-none transition"
           >
-            <option value="" class="bg-zinc-800 text-white">Todas</option>
-            <option *ngFor="let cat of categorias" [value]="cat" class="bg-zinc-800 text-white">{{ cat }}</option>
+            <option value="" class="bg-paper text-ink">Todas</option>
+            <option *ngFor="let cat of categorias" [value]="cat" class="bg-paper text-ink">{{ cat }}</option>
           </select>
         </div>
 
         <!-- Nivel -->
         <div>
-          <label class="block text-sm font-semibold text-zinc-400 mb-2">Nivel</label>
+          <label class="block text-sm font-semibold text-ink-light mb-2">Nivel</label>
           <select
             [(ngModel)]="selectedNivel"
             (change)="onFilterChange()"
-            class="w-full px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-xl text-white focus:border-green-500 focus:ring-2 focus:ring-green-500/30 focus:outline-none transition"
+            class="w-full px-4 py-2 bg-cream border border-forest-100 rounded-xl text-ink focus:border-forest-500 focus:ring-2 focus:ring-forest-500/20 focus:outline-none transition"
           >
-            <option value="" class="bg-zinc-800 text-white">Todos</option>
-            <option *ngFor="let nivel of niveles" [value]="nivel" class="bg-zinc-800 text-white">{{ nivel }}</option>
+            <option value="" class="bg-paper text-ink">Todos</option>
+            <option *ngFor="let nivel of niveles" [value]="nivel" class="bg-paper text-ink">{{ nivel }}</option>
           </select>
         </div>
       </div>
@@ -67,41 +67,41 @@
 
     <!-- Loading -->
     <div *ngIf="loading" class="text-center py-12">
-      <p class="text-zinc-400 text-lg">Cargando palabras...</p>
+      <p class="text-ink-light text-lg">Cargando palabras...</p>
     </div>
 
     <!-- Vocabulario Grid -->
     <div *ngIf="!loading" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       <div
         *ngFor="let word of vocabulario"
-        class="bg-zinc-900 border border-zinc-800 rounded-2xl shadow-lg p-6 hover:border-green-500/40 hover:shadow-[0_0_25px_rgba(34,197,94,0.12)] transition cursor-pointer"
+        class="bg-paper border border-forest-100 rounded-2xl shadow-sm p-6 hover:shadow-md hover:border-forest-400/40 transition cursor-pointer"
       >
         <div class="flex justify-between items-start mb-4">
           <div>
-            <p class="text-sm font-semibold text-zinc-500 uppercase">{{ word.categoria }}</p>
-            <p class="text-xs text-zinc-500">{{ word.nivel }}</p>
+            <p class="text-sm font-semibold text-ink-light uppercase">{{ word.categoria }}</p>
+            <p class="text-xs text-ink-light">{{ word.nivel }}</p>
           </div>
-          <span class="bg-red-500/10 text-red-400 border border-red-500/30 px-3 py-1 rounded-full text-xs font-semibold">
+          <span class="bg-terracotta-50 text-terracotta-600 border border-terracotta-100 px-3 py-1 rounded-full text-xs font-semibold">
             {{ word.nivel }}
           </span>
         </div>
 
         <div class="mb-6">
-          <p class="text-2xl font-bold text-white mb-2">{{ word.palabraES }}</p>
-          <p class="text-2xl font-bold text-green-400">{{ word.palabraIT }}</p>
+          <p class="text-2xl font-bold text-ink mb-2">{{ word.palabraES }}</p>
+          <p class="text-2xl font-serif font-bold text-forest-500">{{ word.palabraIT }}</p>
         </div>
 
-        <div class="bg-black/40 border border-zinc-800 rounded-xl p-4 mb-4">
-          <p class="text-sm text-zinc-400 mb-2">
-            <span class="font-semibold text-zinc-300">Español:</span> {{ word.ejemploES }}
+        <div class="bg-cream border border-forest-100 rounded-xl p-4 mb-4">
+          <p class="text-sm text-ink-light mb-2">
+            <span class="font-semibold text-ink">Español:</span> {{ word.ejemploES }}
           </p>
-          <p class="text-sm text-zinc-400">
-            <span class="font-semibold text-zinc-300">Italiano:</span> {{ word.ejemploIT }}
+          <p class="text-sm text-ink-light">
+            <span class="font-semibold text-ink">Italiano:</span> {{ word.ejemploIT }}
           </p>
         </div>
 
         <button
-          class="w-full bg-gradient-to-r from-green-500 to-green-600 text-black font-bold py-2 rounded-xl shadow-[0_0_15px_rgba(34,197,94,0.3)] hover:shadow-[0_0_25px_rgba(34,197,94,0.5)] transition"
+          class="w-full bg-gradient-to-r from-terracotta-500 to-terracotta-600 text-white font-bold py-2 rounded-xl shadow-md shadow-terracotta-500/25 hover:shadow-lg hover:shadow-terracotta-500/35 transition"
         >
           Practicar 🎯
         </button>
@@ -110,7 +110,7 @@
 
     <!-- No results -->
     <div *ngIf="!loading && vocabulario.length === 0" class="text-center py-12">
-      <p class="text-zinc-400 text-lg">No se encontraron palabras</p>
+      <p class="text-ink-light text-lg">No se encontraron palabras</p>
     </div>
   </main>
 </div>
