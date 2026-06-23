@@ -1,70 +1,71 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal, computed, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { User, AuthResponse } from '../models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   private apiUrl = 'http://localhost:3000/auth';
-  private currentUserSubject = new BehaviorSubject<any>(null);
-  public currentUser$ = this.currentUserSubject.asObservable();
+  private http = inject(HttpClient);
 
-  constructor(private http: HttpClient) {
+  private _currentUser = signal<User | null>(null);
+  readonly currentUser = this._currentUser.asReadonly();
+  readonly isLoggedIn = computed(() => this._currentUser() !== null);
+
+  constructor() {
     this.loadUserFromStorage();
   }
 
-  register(email: string, password: string, nombre: string, idiomaNativo: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/register`, {
+  register(email: string, password: string, nombre: string, idiomaNativo: string): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(`${this.apiUrl}/register`, {
       email,
       password,
       nombre,
       idiomaNativo,
     }).pipe(
-      tap((response: any) => this.saveToken(response.accessToken, response.user))
+      tap((response) => this.saveToken(response.accessToken, response.user))
     );
   }
 
-  login(email: string, password: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/login`, {
+  login(email: string, password: string): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(`${this.apiUrl}/login`, {
       email,
       password,
     }).pipe(
-      tap((response: any) => this.saveToken(response.accessToken, response.user))
+      tap((response) => this.saveToken(response.accessToken, response.user))
     );
   }
 
-  private saveToken(token: string, user: any): void {
+  private saveToken(token: string, user: User): void {
     localStorage.setItem('accessToken', token);
     localStorage.setItem('user', JSON.stringify(user));
-    this.currentUserSubject.next(user);
+    this._currentUser.set(user);
   }
 
   private loadUserFromStorage(): void {
     const user = localStorage.getItem('user');
     const token = localStorage.getItem('accessToken');
-    
+
     if (user && token) {
-      this.currentUserSubject.next(JSON.parse(user));
+      this._currentUser.set(JSON.parse(user) as User);
     }
   }
 
   logout(): void {
     localStorage.removeItem('accessToken');
     localStorage.removeItem('user');
-    this.currentUserSubject.next(null);
-  }
-
-  isLoggedIn(): boolean {
-    return !!localStorage.getItem('accessToken');
+    this._currentUser.set(null);
   }
 
   getToken(): string | null {
     return localStorage.getItem('accessToken');
   }
 
-  getCurrentUser(): any {
-    return this.currentUserSubject.value;
+  // shim temporal para HomeComponent — eliminar en T6
+  getCurrentUser(): User | null {
+    return this._currentUser();
   }
 }

@@ -24,7 +24,7 @@
 
 ---
 
-## T2 — Tipar y modernizar `AuthService` (BehaviorSubject → signal)
+## T2 — [x] Tipar y modernizar `AuthService` (BehaviorSubject → signal)
 
 **Depende de:** T1.
 
